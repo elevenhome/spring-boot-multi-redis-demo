@@ -18,30 +18,29 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 @EnableCaching
 public class DefaultRedisConfig extends RedisConfig {
 
-
-    @Value("${spring.redis.database}")
+    @Value("${spring.redis1.database}")
     private int dbIndex;
 
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis1.host}")
     private String host;
 
-    @Value("${spring.redis.port}")
+    @Value("${spring.redis1.port}")
     private int port;
 
-    @Value("${spring.redis.password}")
+    @Value("${spring.redis1.password}")
     private String password;
 
-    @Value("${spring.redis.timeout}")
+    @Value("${spring.redis1.timeout}")
     private int timeout;
 
     /**
      * 配置redis连接工厂
-     *
      * @return
      */
     @Bean
     public RedisConnectionFactory defaultRedisConnectionFactory() {
-        return createJedisConnectionFactory(dbIndex, host, port, password, timeout);
+//        return createJedisConnectionFactory(dbIndex, host, port, password, timeout);
+        return createJedisConnectionFactory(dbIndex, host, port, password);
     }
 
     /**

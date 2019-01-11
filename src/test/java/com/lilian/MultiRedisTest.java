@@ -32,12 +32,14 @@ public class MultiRedisTest {
     public void stringRedisTest() {
         redisTemplate.opsForValue().set("slzzzz", "111111");
         redisTemplate1.opsForValue().set("slzzzz", "222222");
+        System.out.println("slzzzz="+redisTemplate1.opsForValue().get("slzzzz"));
     }
 
     @Test
     public void stringRedisTest01() {
         stringRedisTemplate.opsForValue().set("eleven", "111111-eleven");
         stringRedisTemplate.opsForValue().set("eleven", "222222-eleven");
+        stringRedisTemplate.opsForValue().set("eleven", "333333-eleven");
         System.out.println("eleven="+stringRedisTemplate.opsForValue().get("eleven"));
     }
 
@@ -45,6 +47,10 @@ public class MultiRedisTest {
     public void objectRedisTest() {
         redisTemplate.opsForValue().set("person", new Person("李飞", 20, "临汾", "lf@lilian.com", "1324567891"));
         redisTemplate1.opsForValue().set("person", new Person("李大壮", 35, "西安", "ldz@lilian.com", "1324567891"));
+        Person obj = (Person)redisTemplate1.opsForValue().get("person");
+        System.out.println("person000 = "+obj);
+        System.out.println("person000 @@@= "+obj.getName());
+        System.out.println("person1111 = "+redisTemplate1.opsForValue().get("person"));
     }
 
 }

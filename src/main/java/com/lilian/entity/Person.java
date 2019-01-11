@@ -3,6 +3,8 @@ package com.lilian.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * jpa-demo
  *
@@ -11,7 +13,7 @@ import lombok.Data;
  */
 //@Data
 //@AllArgsConstructor
-public class Person {
+public class Person implements Serializable {
 
     /**
      * 姓名
@@ -33,6 +35,9 @@ public class Person {
      * 手机号码
      */
     private String phoneNum;
+
+    public Person() {
+    }
 
     public Person(String name, Integer age, String address, String email, String phoneNum) {
         this.name = name;
@@ -80,5 +85,16 @@ public class Person {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                '}';
     }
 }
