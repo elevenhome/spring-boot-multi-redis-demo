@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * llld-parent 配置默认Redis操作实例 到Spring中
@@ -56,5 +57,16 @@ public class DefaultRedisConfig extends RedisConfig {
         template.afterPropertiesSet();
         return template;
     }
+
+
+    @Bean(name = "stringRedisTemplate")
+    public StringRedisTemplate stringRedisTemplate() {
+        StringRedisTemplate template = new StringRedisTemplate();
+        template.setConnectionFactory(defaultRedisConnectionFactory());
+        setSerializer(template);
+        template.afterPropertiesSet();
+        return template;
+    }
+
 
 }

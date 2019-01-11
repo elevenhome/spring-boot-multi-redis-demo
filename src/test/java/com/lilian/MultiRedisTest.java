@@ -5,13 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
 /**
  * spring-boot-data-packing
- *
  * @Author 孙龙
  * @Date 2018/8/13
  */
@@ -22,15 +22,23 @@ public class MultiRedisTest {
     @Resource(name = "defaultRedisTemplate")
     private RedisTemplate<String, Object> redisTemplate;
 
+    @Resource(name = "stringRedisTemplate")
+    private StringRedisTemplate stringRedisTemplate;
+
     @Resource(name = "cacheRedisTemplate")
     private RedisTemplate<String, Object> redisTemplate1;
 
     @Test
     public void stringRedisTest() {
-
         redisTemplate.opsForValue().set("slzzzz", "111111");
         redisTemplate1.opsForValue().set("slzzzz", "222222");
+    }
 
+    @Test
+    public void stringRedisTest01() {
+        stringRedisTemplate.opsForValue().set("eleven", "111111-eleven");
+        stringRedisTemplate.opsForValue().set("eleven", "222222-eleven");
+        System.out.println("eleven="+stringRedisTemplate.opsForValue().get("eleven"));
     }
 
     @Test
